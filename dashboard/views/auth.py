@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import logout, login, authenticate
 from django.urls import reverse
 from django.contrib import messages
-from dashboard.models import User
+from dashboard.models import User, Wallet
 from django.db import IntegrityError
 from rest_framework.authtoken.models import Token
 
@@ -104,6 +104,13 @@ def register_view(request):
                     password = password
                 )
                 new_user.save()
+
+                new_wallet = Wallet.objects.create(
+                    user=new_user,
+                    balance=0.00
+                )
+
+                new_wallet.save()
             except IntegrityError:
                 messages.error(request, "Unable to create account, please try again")
                 return HttpResponseRedirect(reverse("dashboard:register"))

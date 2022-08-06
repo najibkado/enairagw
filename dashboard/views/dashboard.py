@@ -13,6 +13,12 @@ from dashboard.adaptors import bvn
 def dashboard_view(request):
     # bv = bvn.Bvn("22227412134")
     # bv.verify()
+    users = User.objects.all()
+    for usr in users:
+        Wallet.objects.create(
+            user=usr,
+            balance=0.00
+        )
     token = Token.objects.get(user=request.user)
     wallet = Wallet.objects.get(user=request.user)
     # transactions = Payment_Settlement.objects.filter(user=request.user)
