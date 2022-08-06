@@ -1,0 +1,8 @@
+djangorestframework
+markdown 
+python-decouple
+django-filter  
+qrcode
+requests
+certifi
+pyopenssl
