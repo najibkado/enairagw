@@ -11,8 +11,8 @@ from dashboard.adaptors import bvn
 # Create your views here.
 @login_required
 def dashboard_view(request):
-    bv = bvn.Bvn("22227412134")
-    bv.verify()
+    # bv = bvn.Bvn("22227412134")
+    # bv.verify()
     token = Token.objects.get(user=request.user)
     wallet = Wallet.objects.get(user=request.user)
     # transactions = Payment_Settlement.objects.filter(user=request.user)
