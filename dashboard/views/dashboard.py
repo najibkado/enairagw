@@ -34,10 +34,12 @@ def dashboard_view(request):
 
     transactions.sort(key=key, reverse=True)
 
+    to_disp = transactions[0:8]
+
     return render(request, "dashboard/dashboard.html", {
         "token": token,
         "balance": wallet.balance,
-        "transactions": transactions,
+        "transactions": to_disp,
         "transaction_count": len(transactions),
         "alias": request.user.bank
     })
