@@ -26,8 +26,7 @@ class Bvn:
         response = requests.post(self.url, headers=headers, json=body, verify=False)
 
         if response.status_code == 200:
-            res = response.text
+            res = response.json()
             print(res)
         else:
             print(response.status_code)
-            print((response.json()))
