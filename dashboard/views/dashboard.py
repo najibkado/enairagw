@@ -34,7 +34,8 @@ def dashboard_view(request):
     return render(request, "dashboard/dashboard.html", {
         "token": token,
         "balance": wallet.balance,
-        "transactions": transactions
+        "transactions": transactions,
+        "transaction_count": len(transactions)
     })
 
 def error_view(request):
