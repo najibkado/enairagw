@@ -2,7 +2,7 @@ from lib2to3.pgen2 import token
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from dashboard.models import User, Wallet, Payment_Intent, PaymentAttempt
+from dashboard.models import User, Wallet, Payment_Intent, PaymentAttempt, PaymentSettlement
 from rest_framework.authtoken.models import Token
 import qrcode
 import qrcode.image.svg
@@ -21,10 +21,20 @@ def dashboard_view(request):
     #     )
     token = Token.objects.get(user=request.user)
     wallet = Wallet.objects.get(user=request.user)
-    # transactions = Payment_Settlement.objects.filter(user=request.user)
+    attempts = PaymentAttempt.objects.filter(user=request.user, status="success")
+    # settlements = PaymentSettlement.objects.filter(user=request.user)
+
+    transactions = [transaction for transaction in attempts]
+
+    def key(tran):
+        return tran.created_at
+
+    transactions.sort(key=key, reverse=True)
+
     return render(request, "dashboard/dashboard.html", {
         "token": token,
-        "balance": wallet.balance
+        "balance": wallet.balance,
+        "transactions": transactions
     })
 
 def error_view(request):
