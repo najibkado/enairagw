@@ -23,7 +23,7 @@ class Bvn:
         }
 
 
-        response = requests.post(self.url, headers=headers, data=body, verify=False)
+        response = requests.post(self.url, headers=headers, json=body, verify=False)
 
         if response.status_code == 200:
             res = response.text

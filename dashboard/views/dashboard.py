@@ -19,6 +19,9 @@ def dashboard_view(request):
     #         user=usr,
     #         balance=0.00
     #     )
+    # bv = bvn.Bvn("22227412134")
+    # bv.verify()
+    
     token = Token.objects.get(user=request.user)
     wallet = Wallet.objects.get(user=request.user)
     attempts = PaymentAttempt.objects.filter(user=request.user, status="success")
@@ -44,11 +47,10 @@ def error_view(request):
 
 def qr_view(request, id):
     #TODO: Use payment adaptor to generate payment link for the payment intent id 
-
-    # try:
-    #     intent = Payment_Intent.objects.get(pk=id)
-    # except Payment_Intent.DoesNotExist:
-    #     return HttpResponseRedirect(reverse("dashboard:error"))
+    try:
+        intent = Payment_Intent.objects.get(pk=id)
+    except Payment_Intent.DoesNotExist:
+        return HttpResponseRedirect(reverse("dashboard:error"))
 
     factory = qrcode.image.svg.SvgImage
     img = qrcode.make("https://tenaira.page.link/jbhj", image_factory=factory, box_size=20)
