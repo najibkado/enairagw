@@ -7,7 +7,7 @@ from rest_framework.views import APIView
 from rest_framework.authentication import SessionAuthentication, TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from dashboard.models import User
-from api.models import Payment_Intent
+from dashboard.models import Payment_Intent
 from api.fusion import fusion_generator
 
 # Create your views here.

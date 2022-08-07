@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Payment_Intent
+from dashboard.models import Payment_Intent
 
 
 class PaymentIntentSerializer(serializers.ModelSerializer):

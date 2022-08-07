@@ -1,6 +1,6 @@
-from urllib import response
 import requests
 from decouple import config
+import json
 
 class Bvn:
 
@@ -10,7 +10,6 @@ class Bvn:
         self.bvn = bvn
 
     def verify(self):
-
 
         headers = {
             "Content-Type": "application/json",
@@ -23,18 +22,12 @@ class Bvn:
             "bvn": self.bvn
         }
 
-        # proxies = {
-        #     'http': 'http://10.10.10.10:8000',
-        #     'https': 'http://10.10.10.10:8000',
-        # }
 
-        # cafile = 'dashboard/adaptors/certs.pem'
-
-        response = requests.post(self.url, headers=headers, data=body)
+        response = requests.post(self.url, headers=headers, data=body, verify=False)
 
         if response.status_code == 200:
-            res = response.json()
+            res = response.text
             print(res)
         else:
             print(response.status_code)
-            print(response.json())
+            print((response.json()))
