@@ -54,7 +54,7 @@ def qr_view(request, id):
         return HttpResponseRedirect(reverse("dashboard:error"))
 
     factory = qrcode.image.svg.SvgImage
-    img = qrcode.make("https://tenaira.page.link/jbhj", image_factory=factory, box_size=20)
+    img = qrcode.make("https://tenaira.page.link/7rqG", image_factory=factory, box_size=20)
     stream = BytesIO()
     img.save(stream)
 
