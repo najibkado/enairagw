@@ -38,7 +38,8 @@ def dashboard_view(request):
         "token": token,
         "balance": wallet.balance,
         "transactions": transactions,
-        "transaction_count": len(transactions)
+        "transaction_count": len(transactions),
+        "alias": request.user.bank
     })
 
 def error_view(request):

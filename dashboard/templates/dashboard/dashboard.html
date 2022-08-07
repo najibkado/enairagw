@@ -13,7 +13,7 @@
               <span class="mask bg-gradient-dark"></span>
               <div class="card-body position-relative z-index-1 p-3">
                 <i class="fas fa-wallet text-white p-2"></i>
-                <h5 class="text-white mt-4 mb-5 pb-2">TECH90 MARKET PLACE</h5>
+                <h5 class="text-white mt-4 mb-5 pb-2">{{ request.user.first_name }}</h5>
                 <div class="d-flex">
                   <div class="d-flex">
                     <div class="me-4">
@@ -22,7 +22,7 @@
                     </div>
                     <div>
                       <p class="text-white text-sm opacity-8 mb-0">Alias</p>
-                      <h6 class="text-white mb-0">@sand.o1</h6>
+                      <h6 class="text-white mb-0">@{{ alias }}</h6>
                     </div>
                   </div>
                 </div>

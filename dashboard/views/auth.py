@@ -57,12 +57,12 @@ def register_view(request):
 
         #Collect User Data
         name = request.POST["name"]
-        bvn = request.POST["bvn"]
+        bvn = request.POST["bvn"] #BVN
         email = request.POST["email"]
         password = request.POST["password"]
-        bank = request.POST["bank"]
-        account = request.POST["account"]
-        tin = request.POST["tin"]
+        bank = request.POST["bank"] #eNaira alias
+        account = request.POST["account"] #eNaira alias business name
+        tin = request.POST["tin"] #BVN Name
 
         #Verify User Data
         if name == "" or bvn == "" or email == "" or password == "" or bank == "" or account == "" or tin == "":
@@ -75,9 +75,9 @@ def register_view(request):
             return HttpResponseRedirect(reverse("dashboard:register"))
 
         #Verify Account number
-        if len(account) < 10 or len(account) > 10:
-            messages.error(request, "Invalid Account Number")
-            return HttpResponseRedirect(reverse("dashboard:register"))
+        # if len(account) < 10 or len(account) > 10:
+        #     messages.error(request, "Invalid Account Number")
+        #     return HttpResponseRedirect(reverse("dashboard:register"))
 
         #Ensure User Email Does not Exist
         if User.objects.filter(email=email).exists():
